@@ -1,0 +1,3 @@
+send to pimmetjelieshout@gmail.com, subject; test; body; hello world
+confirm: true
+exit

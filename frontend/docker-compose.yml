@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  pydanticai-frontend:
+    build: .
+    ports:
+      - "8501:8501"  # Streamlit frontend
+      - "8000:8000"  # FastAPI backend
+    environment:
+      - FASTAPI_URL=http://localhost:8000
+      - LOG_LEVEL=INFO
+    volumes:
+      # Mount .env file if it exists
+      - ./.env:/app/.env:ro
+      # Mount parent directory for agent access
+      - ../mcp_business_agent:/app/mcp_business_agent:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  default:
+    name: pydanticai-network
