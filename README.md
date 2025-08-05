@@ -6,60 +6,80 @@ Built met **PydanticAI** voor robuuste agent architectuur, type veiligheid en pr
 
 ## 🚀 Overzicht
 
-De **MCP Business Automation Agent** is een conversational AI-systeem dat sophisticate bedrijfsworkflows kan uitvoeren door je bestaande MCP server tools te orchestreren. Perfect voor:
+De **MCP Business Automation Agent** is een conversational AI-systeem dat sophisticate bedrijfsworkflows kan uitvoeren door je bestaande MCP server tools te orchestreren. Het project bevat zowel een **production-ready agent** als uitgebreide **learning resources** voor PydanticAI ontwikkeling.
 
-- **📊 Data-analyse**: Query bedrijfsdata, genereer rapporten, identificeer trends
-- **📧 Communicatie**: Verstuur professionele e-mails en meldingen  
-- **🔍 Onderzoek**: Competitieve intelligence, marktonderzoek, web scraping
-- **🧠 Strategische besluitvorming**: Gestructureerde probleemoplossing en analyse
-- **⚙️ Workflow automatisering**: Multi-step bedrijfsprocessen
+### 🎯 Hoofdcomponenten
+
+- **🤖 CLI Agent** (`mcp_business_agent/`) - Production-ready business automation agent
+- **🌐 Web Interface** (`frontend/`) - Modern Streamlit + FastAPI web interface  
+- **📚 Learning Examples** (`examples/`) - Uitgebreide PydanticAI voorbeelden en patronen
+- **🔬 PRP System** (`PRPs/`) - PydanticAI Research Pattern methodology
 
 ### ✨ Kernfunctionaliteiten
 
 - **15+ MCP Tools** voor database, email, web research en thinking
 - **Multi-provider LLM ondersteuning** (OpenAI + Anthropic fallback)
-- **Robuuste foutafhandeling** met retry logica en rate limiting
+- **Modern web interface** met real-time streaming en chat history
+- **Robuuste foutafhandeling** met retry logica en rate limiting  
 - **Permission-based access control** met security validatie
-- **Interactieve CLI interface** met rich formatting
+- **Dual interface** - CLI én web-based interaction
 - **Comprehensive testing** met TestModel patronen
+- **Learning resources** - Complete PydanticAI development examples
 
 ## 🏗️ Architectuur
 
+### Project Structure
 ```
-mcp_business_agent/
-├── __init__.py              # Package exports  
-├── __main__.py              # Module entry point (python -m mcp_business_agent)
-├── agent.py                 # Hoofd agent met 15+ MCP tools
-├── auth_cli.py              # Command-line OAuth setup utility
-├── auth_manager.py          # GitHub OAuth token management
-├── cli.py                   # Interactieve CLI interface
-├── dependencies.py          # Dependency injection systeem
-├── mcp_client.py            # Robuuste MCP server communicatie  
-├── models.py                # Pydantic data modellen
-├── oauth_manager.py         # OAuth flow implementatie
-├── providers.py             # Multi-provider LLM ondersteuning
-├── settings.py              # Environment-based configuratie
-├── workflow_manager.py      # Multi-step automatisering
-├── requirements.txt         # Alle dependencies
-├── .env.example             # Configuratie template
-└── tests/
-    ├── __init__.py
-    └── test_agent.py        # Uitgebreide test suite
+my-first-agent/
+├── mcp_business_agent/      # 🤖 Production Agent
+│   ├── agent.py            # Hoofd agent met 15+ MCP tools
+│   ├── cli.py              # Interactieve CLI interface
+│   ├── mcp_client.py       # Robuuste MCP server communicatie
+│   ├── auth_manager.py     # GitHub OAuth token management
+│   ├── settings.py         # Environment-based configuratie
+│   ├── providers.py        # Multi-provider LLM ondersteuning
+│   ├── models.py           # Pydantic data modellen
+│   ├── workflow_manager.py # Multi-step automatisering
+│   ├── dependencies.py     # Dependency injection systeem
+│   ├── requirements.txt    # Dependencies
+│   └── tests/              # Uitgebreide test suite
+├── frontend/               # 🌐 Web Interface  
+│   ├── streamlit_app.py    # Modern chat interface
+│   ├── fastapi_server.py   # REST API backend
+│   ├── start_servers.py    # Development startup script
+│   └── requirements.txt    # Frontend dependencies
+├── examples/               # 📚 Learning Resources
+│   ├── basic_chat_agent/   # Simple conversational patterns
+│   ├── tool_enabled_agent/ # Custom tool implementations
+│   ├── structured_output_agent/ # Pydantic model outputs
+│   ├── main_agent_reference/    # Complete reference implementation
+│   └── testing_examples/   # Test patterns and validation
+├── PRPs/                   # 🔬 Research Patterns
+│   ├── INITIAL.md          # Agent requirement templates
+│   └── *.md               # Generated PRP documents
+└── CLAUDE.md              # Global PydanticAI development rules
 ```
 
 ## 🛠️ Setup & Installatie
 
 ### 1. Installeer Dependencies
 
+#### Agent Dependencies
 ```bash
-# Installeer Python dependencies
+# Installeer Python dependencies voor de agent
 pip install -r mcp_business_agent/requirements.txt
 
 # Of gebruik een virtual environment (aanbevolen)
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
+source venv/bin/activate  # Linux/Mac  
 # venv\Scripts\activate   # Windows
 pip install -r mcp_business_agent/requirements.txt
+```
+
+#### Frontend Dependencies (Optioneel)
+```bash
+# Voor de web interface
+pip install -r frontend/requirements.txt
 ```
 
 ### 2. Configureer Environment
@@ -107,9 +127,9 @@ python -m mcp_business_agent --status
 
 ## 🎯 Gebruik
 
-### Interactieve CLI
+### 🤖 CLI Interface
 
-Start de conversational interface:
+Start de conversational command-line interface:
 
 ```bash
 python -m mcp_business_agent
@@ -120,6 +140,36 @@ Of met debug mode:
 ```bash
 python -m mcp_business_agent --debug
 ```
+
+### 🌐 Web Interface
+
+Voor een moderne chat interface met streaming responses:
+
+```bash
+# Start beide servers (aanbevolen)
+cd frontend
+python start_servers.py
+
+# Of start handmatig:
+# Terminal 1: FastAPI backend
+python frontend/fastapi_server.py
+
+# Terminal 2: Streamlit frontend  
+streamlit run frontend/streamlit_app.py
+```
+
+**Open in browser:**
+- 🌐 **Chat Interface**: http://localhost:8501
+- 📚 **API Documentation**: http://localhost:8000/docs
+
+#### Web Interface Features
+- **Real-time streaming** responses
+- **Model selection** (GPT-4, Claude, etc.)
+- **Custom system prompts** 
+- **Chat history** persistence
+- **Agent tools inspection**
+- **Health monitoring**
+- **Mobile responsive** design
 
 ### Voorbeelden van Conversaties
 
@@ -235,7 +285,49 @@ Voor productie gebruik:
 4. **Permissions**: Configureer gebruikersrechten per omgeving
 5. **Health Checks**: Implementeer health check endpoints
 
-## 📚 Development
+## 📚 Learning Resources & Development
+
+### PydanticAI Examples
+
+Het project bevat uitgebreide learning resources in de `examples/` directory:
+
+#### 🚀 **Basic Chat Agent** (`examples/basic_chat_agent/`)
+- Eenvoudige conversational agent implementatie
+- Ideaal startpunt voor PydanticAI beginners
+- Toont core agent setup patterns
+
+#### 🔧 **Tool-Enabled Agent** (`examples/tool_enabled_agent/`)
+- Agent met custom tool implementaties
+- Toont `@agent.tool` decorators en parameter validation
+- RunContext dependency injection voorbeelden
+
+#### 📊 **Structured Output Agent** (`examples/structured_output_agent/`)
+- Agent met Pydantic model outputs
+- Result type validation en structured responses
+- Perfect voor data extraction use cases
+
+#### 🎯 **Main Agent Reference** (`examples/main_agent_reference/`)
+- **Complete reference implementation** voor production agents
+- Environment-based configuratie met pydantic-settings
+- Multi-provider LLM setup (OpenAI + Anthropic)
+- OAuth integration patterns
+- Comprehensive error handling
+- Testing met TestModel/FunctionModel
+
+#### 🧪 **Testing Examples** (`examples/testing_examples/`)
+- TestModel patronen voor snelle ontwikkeling
+- FunctionModel voor gecontroleerde test scenarios  
+- Agent.override() testing patterns
+- Async test patterns met pytest-asyncio
+
+### PRP Methodology (`PRPs/`)
+
+Het project implementeert de **PydanticAI Research Pattern** metodologie:
+
+1. **INITIAL.md** - Definieer agent requirements
+2. **Generate PRP** - `/generate-pydantic-ai-prp INITIAL.md`
+3. **Execute PRP** - `/execute-pydantic-ai-prp PRPs/filename.md`
+4. **Validate** - Test met TestModel/FunctionModel
 
 ### Code Structure
 
@@ -280,14 +372,34 @@ python -m mcp_business_agent --status --debug
 
 ## 🎊 Features & Highlights
 
+### 🤖 Agent Capabilities
 ✅ **Production-ready** met comprehensive error handling  
 ✅ **Security-first** met permission checking en input validatie  
 ✅ **Type-safe** met Pydantic modellen en validation  
-✅ **Multi-provider** LLM ondersteuning met fallback  
-✅ **Extensible** architectuur voor custom tools  
-✅ **CLI interface** voor interactieve gebruik  
-✅ **Comprehensive testing** met 95%+ coverage  
-✅ **Rich formatting** voor professionele output  
+✅ **Multi-provider** LLM ondersteuning (OpenAI + Anthropic fallback)  
+✅ **15+ MCP Tools** - database, email, web research, strategic thinking  
+✅ **OAuth Integration** - GitHub en Microsoft Graph authentication  
+
+### 🌐 Interface Options  
+✅ **Dual Interface** - CLI én modern web interface  
+✅ **Real-time Streaming** - Live response streaming in web UI  
+✅ **Chat History** - Persistent conversation management  
+✅ **Health Monitoring** - Real-time system status  
+✅ **Mobile Responsive** - Works on desktop en mobile  
+
+### 📚 Learning & Development
+✅ **Comprehensive Examples** - 5+ complete PydanticAI implementations  
+✅ **PRP Methodology** - Structured agent development workflow  
+✅ **Testing Patterns** - TestModel/FunctionModel validation  
+✅ **Reference Implementation** - Production-ready agent template  
+✅ **Global Development Rules** - CLAUDE.md best practices  
+
+### 🔧 Technical Excellence
+✅ **Extensible Architecture** voor custom tools  
+✅ **Environment-based Configuration** met pydantic-settings  
+✅ **Comprehensive Testing** met pytest en async patterns  
+✅ **Rich CLI Formatting** voor professionele output  
+✅ **Docker Support** - Container deployment ready  
 
 ---
 
